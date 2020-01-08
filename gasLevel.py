@@ -73,9 +73,7 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
 #main ioop
 def main():
          init()
-         print("please wait...")
          time.sleep(1)
-
          while True:
                   GasLevel=readadc(mq2_apin, SPICLK, SPIMOSI, SPIMISO, SPICS)
                   if GPIO.input(mq2_dpin):

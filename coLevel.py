@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import pyrebase
+import os
 
 config = {
   "apiKey": "AIzaSyALCt4Kjh-IUhFHIn7z57S7j8HJ4YVgcP8",
@@ -23,6 +24,8 @@ SPIMOSI = 24
 SPICS = 25
 mq7_dpin = 26
 mq7_apin = 0
+
+os.system("sudo motion")
 
 #port init
 def init():

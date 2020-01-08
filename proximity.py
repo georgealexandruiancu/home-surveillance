@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import time
 from gpiozero import Buzzer
 import pyrebase
+import os
 
 config = {
   "apiKey": "AIzaSyALCt4Kjh-IUhFHIn7z57S7j8HJ4YVgcP8",
@@ -56,7 +57,7 @@ def distance():
     TimeElapsed = StopTime - StartTime
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
+    distance = (TimeElapsed * 34300)
     if(distance <= 100):
        buzzer.on()
        time.sleep(0.1)
@@ -67,10 +68,8 @@ if __name__ == '__main__':
     try:
         while True:
             dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
             db.child("distance").set(str("%.1f cm" % dist))
             time.sleep(2)
- 
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
