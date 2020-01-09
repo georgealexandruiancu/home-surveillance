@@ -1,0 +1,45 @@
+/* Container for skill bars */
+.container-bars {
+  width: 100%; /* Full width */
+  background-color: black; /* Grey background */
+  border-radius: 5px;
+  max-height: 40px;
+}
+
+.bar {
+  text-align: right; /* Right-align text */
+  padding-top: 10px; /* Add top padding */
+  padding-bottom: 10px; /* Add bottom padding */
+  color: white; /* White text color */
+  padding-right: 10px;
+  border-radius: 5px;
+  transition: all .3s;
+  max-height: 40px;
+}
+
+.html {width: 90%; background-color: #4CAF50;} /* Green */
+.css {width: 80%; background-color: #2196F3;} /* Blue */
+.js {width: 65%; background-color: #f44336;} /* Red */
+.php {width: 60%; background-color: #808080;} /* Dark Grey */
+
+.bordered {
+  border: 1px solid #f44336;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+iframe
+{
+    position: absolute;
+    height: 100%;
+    width: 100%; 
+    transform: scaleY(2) scaleX(1.5);
+    top: 40%;
+    right: -100px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
