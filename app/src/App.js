@@ -1,3 +1,8 @@
+// ================
+// This is the main file for the interface
+// Next components is some plugins to access the DB and style for the interface
+// ================
+
 import React, { Component } from 'react';
 
 import './App.css';
@@ -6,6 +11,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import firebase from './config/Firebase';
 
 class App extends Component {
+// ================
+// in this constructor method we will tell to the app in each object to store the data from DB
+// ================
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +22,13 @@ class App extends Component {
     }
   }
 
+  // global variable to use
   distance = 0;
   distanceRelative = 0;
 
+  // when one state is changing this method will run on each modification in DB
+  // is connected to the firebase real-time database
+  // the values came from the Raspi Pi
   componentDidMount() {
     firebase.database().ref("/").on('value', (snapshot) => {
       this.setState({
@@ -25,6 +38,9 @@ class App extends Component {
       })
     });
   }
+
+  // this is for the interface when a value is changing this will change the size
+  // and the colors on the bars
   changeBars() {
     if (this.state.allData != null) {
       let barCoDensity = document.getElementById("coDensity");
@@ -39,11 +55,11 @@ class App extends Component {
       }
 
       let barGasDensity = document.getElementById("gasDensity");
-      barGasDensity.style.width = Math.floor(parseInt(this.state.allData.gasDensity) % 100) + "%";
+      barGasDensity.style.width = Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) + "%";
 
-      if (Math.floor(parseInt(this.state.allData.gasDensity) % 100) > 25 && Math.floor(parseInt(this.state.allData.gasDensity) % 100) < 60) {
+      if (Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) > 25 && Math.floor(parseInt(this.state.allData.gasDensity) / 2% 100) < 60) {
         barGasDensity.style.backgroundColor = "orange";
-      } else if (Math.floor(parseInt(this.state.allData.gasDensity) * 2.8 % 100) < 25) {
+      } else if (Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) < 25) {
         barGasDensity.style.backgroundColor = "green";
       } else {
         barGasDensity.style.backgroundColor = "red";
@@ -73,6 +89,9 @@ class App extends Component {
     }
   }
 
+
+  // this is the main method when app is stating
+  // this function return the app
   render() {
     return (
       <div style={{ minWidth: "100%", minHeight: "100%", height: 100 + "%", position: 'fixed', top: 0, left: 0 }}>
@@ -95,9 +114,9 @@ class App extends Component {
                   </div>
                 </div>
                 <div className="col-md-12  bordered">
-                  <h5>Gas Density: {this.state.allData.gasDensity}</h5> <br />
+                  <h5>Gas Density: {parseInt(this.state.allData.gasDensity) / 2 + "%"}</h5> <br />
                   <div class="container-bars">
-                    <div class="bar js" id="gasDensity">{this.state.allData.gasDensity}</div>
+                    <div class="bar js" id="gasDensity">{parseInt(this.state.allData.gasDensity) / 2 + "%"}</div>
                   </div>
                   <h5>Gas Value: {this.state.allData.gasValue} <br /></h5>
                 </div>
