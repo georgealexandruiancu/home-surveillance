@@ -30,16 +30,13 @@ SPICS = 25
 mq7_dpin = 26
 mq7_apin = 0
 
-<<<<<<< HEAD:coLevel.py
-# this OS command allow us to start the camera
-=======
+
 mq2_dpin = 26
 mq2_apin = 0
 
 smokesensor_dpin = 26
 smokesensor_apin = 0
 
->>>>>>> 341198c6ab50fbff6b810cdffd84b78e8b1213a1:mq2.py
 os.system("sudo motion")
 
 # ---------
@@ -94,20 +91,6 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
 def main():
          init()
          time.sleep(1)
-<<<<<<< HEAD:coLevel.py
-         while True:
-                 # read the values from digital-analog converter
-                  COlevel=readadc(mq7_apin, SPICLK, SPIMOSI, SPIMISO, SPICS)
-                  
-                  if GPIO.input(mq7_dpin):
-                           print("CO not leak")
-                           time.sleep(0.5)
-                  else:
-                          # this is the function which insert in the DB CO LEVEL and DENSITY
-                           db.child("coValue").set(str("%.2f"%((COlevel/1024.)*1.2))+" V")
-               	           db.child("coDensity").set(str("%.2f"%((COlevel/1024.)*10))+" %")
-               	           time.sleep(2)
-=======
          while True:             
                 COlevel=readadc(mq7_apin, SPICLK, SPIMOSI, SPIMISO, SPICS)
 
@@ -133,7 +116,6 @@ def main():
                         db.child("smokeValue").set(str("%.2f"%((smokelevel/1024.)/2.2))+" V")
                         db.child("smokeDensity").set(str("%.2f"%((smokelevel/2048.)*100))+" %")
                 time.sleep(1)
->>>>>>> 341198c6ab50fbff6b810cdffd84b78e8b1213a1:mq2.py
 
 if __name__ =='__main__':
          try:
