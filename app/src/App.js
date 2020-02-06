@@ -55,9 +55,9 @@ class App extends Component {
       }
 
       let barGasDensity = document.getElementById("gasDensity");
-      barGasDensity.style.width = Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) + "%";
+      barGasDensity.style.width = Math.floor(parseInt(this.state.allData.gasDensity) / 3 % 100) + "%";
 
-      if (Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) > 25 && Math.floor(parseInt(this.state.allData.gasDensity) / 2% 100) < 60) {
+      if (Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) > 25 && Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) < 60) {
         barGasDensity.style.backgroundColor = "orange";
       } else if (Math.floor(parseInt(this.state.allData.gasDensity) / 2 % 100) < 25) {
         barGasDensity.style.backgroundColor = "green";
@@ -66,11 +66,11 @@ class App extends Component {
       }
 
       let barSmokeDensity = document.getElementById("smokeDensity");
-      barSmokeDensity.style.width = Math.floor(parseInt(this.state.allData.smokeDensity) % 100) + "%";
+      barSmokeDensity.style.width = Math.floor(parseInt(this.state.allData.smokeDensity) / 2 % 100) + "%";
 
-      if (Math.floor(parseInt(this.state.allData.smokeDensity) % 100) > 25 && Math.floor(parseInt(this.state.allData.smokeDensity) % 100) < 60) {
+      if (Math.floor(parseInt(this.state.allData.smokeDensity) / 2 % 100) > 25 && Math.floor(parseInt(this.state.allData.smokeDensity) / 2 % 100) < 60) {
         barSmokeDensity.style.backgroundColor = "orange";
-      } else if (Math.floor(parseInt(this.state.allData.smokeDensity) % 100) < 25) {
+      } else if (Math.floor(parseInt(this.state.allData.smokeDensity) /2 % 100) < 25) {
         barSmokeDensity.style.backgroundColor = "green";
       } else {
         barSmokeDensity.style.backgroundColor = "red";
